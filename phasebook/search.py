@@ -26,5 +26,27 @@ def search_users(args):
     """
 
     # Implement search here!
+    found_users = list()
 
-    return USERS
+    if "id" in args.keys():
+        for user in USERS:
+            if user["id"] == args["id"]:
+                found_users.append(str(user))
+
+    if "name" in args.keys():
+        for user in USERS:
+            if args["name"].lower() in user["name"].lower():
+                found_users.append(str(user))
+
+    if "age" in args.keys():
+        for user in USERS:
+            if int(args["age"]) - 1 <= int(user["age"]) <= int(args["age"]) + 1:
+                found_users.append(str(user))
+
+    if "occupation" in args.keys():
+        for user in USERS:
+            if args["occupation"].lower() in user["occupation"].lower():
+                found_users.append(str(user))
+
+    # python magic to remove duplicates while keeping order
+    return list(dict.fromkeys(found_users))
