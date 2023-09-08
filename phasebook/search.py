@@ -26,6 +26,8 @@ def search_users(args):
     """
 
     # Implement search here!
+    if not args: return [str(user) for user in USERS]
+
     found_users = list()
 
     if "id" in args.keys():
